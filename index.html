@@ -1,138 +1,656 @@
+<!DOCTYPE HTML>
+<html lang="en">
 
-<!DOCTYPE html>
-<html lang="en" >
+<!-- index 15:23:53 GMT -->
+
 <head>
-  <meta charset="UTF-8">
-  <title>CodePen - Firework Simulator v2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#000000">
-<link rel="shortcut icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
-<link rel="icon" type="image/png" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
-<link rel="apple-touch-icon-precomposed" href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
-<meta name="msapplication-TileColor" content="#000000">
-<meta name="msapplication-TileImage" content="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/firework-burst-icon-v2.png">
-<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="favicon.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-touch-icon-114x114.png">
+
+  <title>Bauhaus - Architecture & Interior HTML Template</title>
+
+  <!-- Styles -->
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Poppins:300,400,500,600,700"
+    rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" media="screen">
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<!-- SVG Spritesheet -->
-<div style="height: 0; width: 0; position: absolute; visibility: hidden;">
-	<svg xmlns="http://www.w3.org/2000/svg">
-		<symbol id="icon-play" viewBox="0 0 24 24">
-			<path d="M8 5v14l11-7z"/>
-		</symbol>
-		<symbol id="icon-pause" viewBox="0 0 24 24">
-			<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-		</symbol>
-		<symbol id="icon-close" viewBox="0 0 24 24">
-			<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-		</symbol>
-		<symbol id="icon-settings" viewBox="0 0 24 24">
-			<path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/>
-		</symbol>
-		<symbol id="icon-sound-on" viewBox="0 0 24 24">
-			<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-		</symbol>
-		<symbol id="icon-sound-off" viewBox="0 0 24 24">
-			<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-		</symbol>
-	</svg>
-</div>
+  <div class="animsition">
+    <div class="wrapper boxed">
 
-<!-- App -->
-<div class="container">
-	<div class="loading-init">
-		<div class="loading-init__header">Loading</div>
-		<div class="loading-init__status">Assembling Shells</div>
-	</div>
-	<div class="stage-container remove">
-		<div class="canvas-container">
-			<canvas id="trails-canvas"></canvas>
-			<canvas id="main-canvas"></canvas>
-		</div>
-		<div class="controls">
-			<div class="btn pause-btn">
-				<svg fill="white" width="24" height="24"><use href="#icon-pause" xlink:href="#icon-pause"></use></svg>
-			</div>
-			<div class="btn sound-btn">
-				<svg fill="white" width="24" height="24"><use href="#icon-sound-off" xlink:href="#icon-sound-off"></use></svg>
-			</div>
-			<div class="btn settings-btn">
-				<svg fill="white" width="24" height="24"><use href="#icon-settings" xlink:href="#icon-settings"></use></svg>
-			</div>
-		</div>
-		<div class="menu hide">
-			<div class="menu__inner-wrap">
-				<div class="btn btn--bright close-menu-btn">
-					<svg fill="white" width="24" height="24"><use href="#icon-close" xlink:href="#icon-close"></use></svg>
-				</div>
-				<div class="menu__header">Settings</div>
-				<div class="menu__subheader">For more info, click any label.</div>
-				<form>
-					<div class="form-option form-option--select">
-						<label class="shell-type-label">Shell Type</label>
-						<select class="shell-type"></select>
-					</div>
-					<div class="form-option form-option--select">
-						<label class="shell-size-label">Shell Size</label>
-						<select class="shell-size"></select>
-					</div>
-					<div class="form-option form-option--select">
-						<label class="quality-ui-label">Quality</label>
-						<select class="quality-ui"></select>
-					</div>
-					<div class="form-option form-option--select">
-						<label class="sky-lighting-label">Sky Lighting</label>
-						<select class="sky-lighting"></select>
-					</div>
-					<div class="form-option form-option--select">
-						<label class="scaleFactor-label">Scale</label>
-						<select class="scaleFactor"></select>
-					</div>
-					<div class="form-option form-option--checkbox">
-						<label class="auto-launch-label">Auto Fire</label>
-						<input class="auto-launch" type="checkbox" />
-					</div>
-					<div class="form-option form-option--checkbox form-option--finale-mode">
-						<label class="finale-mode-label">Finale Mode</label>
-						<input class="finale-mode" type="checkbox" />
-					</div>
-					<div class="form-option form-option--checkbox">
-						<label class="hide-controls-label">Hide Controls</label>
-						<input class="hide-controls" type="checkbox" />
-					</div>
-					<div class="form-option form-option--checkbox form-option--fullscreen">
-						<label class="fullscreen-label">Fullscreen</label>
-						<input class="fullscreen" type="checkbox" />
-					</div>
-					<div class="form-option form-option--checkbox">
-						<label class="long-exposure-label">Open Shutter</label>
-						<input class="long-exposure" type="checkbox" />
-					</div>
-				</form>
-				<div class="credits">
-					Passionately built by <a href="https://cmiller.tech/" target="_blank">Caleb Miller</a>.
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="help-modal">
-		<div class="help-modal__overlay"></div>
-		<div class="help-modal__dialog">
-			<div class="help-modal__header"></div>
-			<div class="help-modal__body"></div>
-			<button type="button" class="help-modal__close-btn">Close</button>
-		</div>
-	</div>
-</div>
-<!-- partial -->
-  <script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/fscreen%401.0.1.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/Stage%400.1.4.js'></script>
-<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/MyMath.js'></script><script  src="./script.js"></script>
+      <!-- Content CLick Capture-->
 
+      <div class="click-capture"></div>
+
+      <!-- Sidebar Menu-->
+
+      <div class="menu">
+        <span class="close-menu icon-cross2 right-boxed"></span>
+
+
+        <ul class="menu-list right-boxed">
+          <li class="active"><a href="index.html">Home</a></li>
+          <li><a href="works.html">Purpose</a></li>
+          <li><a href="works.html">Services</a></li>
+          <li><a href="works.html">Cases</a></li>
+          <li><a href="works.html">Projects</a></li>
+          <li><a href="works.html">Gallery</a></li>
+          <li><a href="works.html">About</a></li>
+          <li><a href="works.html">Contact</a></li>
+
+        </ul>
+        <div class="menu-footer right-boxed">
+          <div class="social-list">
+            <a href="#" class="icon ion-social-twitter"></a>
+            <a href="#" class="icon ion-social-facebook"></a>
+            <a href="#" class="icon ion-social-googleplus"></a>
+            <a href="#" class="icon ion-social-linkedin"></a>
+            <a href="#" class="icon ion-social-dribbble-outline"></a>
+          </div>
+          <div class="copy">© Stunsky 2023. All Rights Reseverd<br></div>
+        </div>
+      </div>
+
+      <!-- Navbar -->
+
+      <header class="navbar boxed js-navbar">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse"
+          aria-expanded="false">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a class="brand" href="#">
+          <img alt="" src="images/logo.svg">
+          <div class="brand-info">
+            <div class="brand-name">EFD</div>
+            <div class="brand-text">Elegance Facade Design</div>
+          </div>
+        </a>
+
+        <div class="social-list hidden-xs">
+          <a href="#" class="icon ion-social-twitter"></a>
+          <a href="#" class="icon ion-social-facebook"></a>
+          <a href="#" class="icon ion-social-googleplus"></a>
+          <a href="#" class="icon ion-social-linkedin"></a>
+          <a href="#" class="icon ion-social-dribbble-outline"></a>
+        </div>
+
+        <div class="navbar-spacer hidden-sm hidden-xs"></div>
+
+        <address class="navbar-address hidden-sm hidden-xs">call us: <span class="text-dark">+91 8089358606</span>
+        </address>
+      </header>
+
+      <!-- Jumbotron -->
+
+      <main class="jumbotron">
+
+        <!-- Start revolution slider -->
+
+        <div class="rev_slider_wrapper">
+          <div id="rev_slider" class="rev_slider tp-overflow-hidden fullscreenbanner">
+            <ul>
+
+              <!-- Slide 1 -->
+
+              <li data-transition='slideleft' data-slotamount='default' data-masterspeed="1000"
+                data-fsmasterspeed="1000">
+
+                <!-- Main image-->
+
+                <img src="images/slider/slider.png" data-bgparallax="5" alt="" data-bgposition="center 0"
+                  data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">
+
+                <!-- Layer 1 -->
+
+                <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" data-x="['left']" data-hoffset="['100']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['-250']" data-width="270"
+                  data-height="5" data-whitespace="nowrap" data-type="shape" data-responsive_offset="on"
+                  data-frames='[{"from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;","speed":1000,"to":"o:1;","delay":0,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
+                  data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                  data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                  style="background-color:#0180C0;"> </div>
+
+                <!-- Layer 2 -->
+
+                <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" data-x="['left']" data-hoffset="['370']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['19']" data-width="5" data-height="544"
+                  data-whitespace="nowrap" data-type="shape" data-responsive_offset="on"
+                  data-frames='[{"from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;","speed":1000,"to":"o:1;","delay":600,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
+                  data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                  data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                  style="background-color:#0180C0;"> </div>
+
+
+                <!-- Layer 3 -->
+
+                <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" data-x="['left']" data-hoffset="['100']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['289']" data-width="270" data-height="5"
+                  data-whitespace="nowrap" data-type="shape" data-responsive_offset="on"
+                  data-frames='[{"from":"x:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;","speed":1000,"to":"o:1;","delay":1200,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
+                  data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                  data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                  style="background-color:#0180C0;"> </div>
+
+
+                <!-- Layer 4 -->
+
+                <div class="tp-caption tp-shape tp-shapewrapper  tp-resizeme" data-x="['left']" data-hoffset="['100']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['19']" data-width="5" data-height="544"
+                  data-whitespace="nowrap" data-type="shape" data-responsive_offset="on"
+                  data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;","speed":1000,"to":"o:1;","delay":1800,"ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"to":"opacity:0;","ease":"nothing"}]'
+                  data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                  data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                  style="background-color:#0180C0;"> </div>
+
+                <!-- Layer 5 -->
+
+                <div class="slider-title tp-caption tp-resizeme" data-x="['left']" data-hoffset="['156']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['-30']" data-textAlign="['left']"
+                  data-fontsize="['72', '63','57','50']" data-lineheight="['72','68', '62','54']" data-height="none"
+                  data-whitespace="nowrap" data-transform_idle="o:1;"
+                  data-transform_in="x:[-155%];z:0;rX:0deg;rY:0deg;rZ:0deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;"
+                  data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                  data-mask_in="x:50px;y:0px;s:inherit;e:inherit;"
+                  data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="500" data-splitin="chars"
+                  data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05"
+                  style="font-weight:600; letter-spacing:-0.05em;">The Facade<br> design<br> solutions
+                </div>
+
+
+                <!-- Layer 6 -->
+
+                <div class="slider-title tp-caption" data-x="['left']" data-hoffset="['156']"
+                  data-y="['middle','middle','middle','middle']" data-voffset="['-170']" data-textAlign="['left']"
+                  data-fontsize="['18']" data-lineheight="['20']" data-height="none" data-whitespace="nowrap"
+                  data-transform_idle="o:1;"
+                  data-transform_in="x:[155%];z:0;rX:0deg;rY:0deg;rZ:0deg;sX:1;sY:1;skX:0;skY:0;s:2000;e:Power2.easeInOut;"
+                  data-transform_out="y:[100%];s:1000;e:Power2.easeInOut;s:1000;e:Power2.easeInOut;"
+                  data-mask_in="x:50px;y:0px;s:inherit;e:inherit;"
+                  data-mask_out="x:inherit;y:inherit;s:inherit;e:inherit;" data-start="1000" data-splitin="chars"
+                  data-splitout="none" data-responsive_offset="on" data-elementdelay="0.05"
+                  style="font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">Best in Class
+                </div>
+
+                <!-- Layer 7 -->
+
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </main>
+
+      <div class="content">
+
+        <!-- Section About -->
+
+        <section class="section-about">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <strong class="section-subtitle">about us</strong>
+                <h2 class="section-title section-about-title">We Are The Leader In The Architectural</h2>
+                <p>Elegance Facade Designs, founded by a group of façade designers and expert engineers with more than
+                  15 years of experience, offers cost-effective design solutions in the form of value-added services to
+                  our Developers, Building Owners, Architects, Project Management Consultants (PMC), & Building
+                  Contractor.
+                </p>
+                <p>
+                  Our team is composed of professionals with a diverse range of technical expertise and decades of
+                  hands-on experience in the Architectural & Facade Industry to serve clients meticulously. Our Façade
+                  consultants deal with projects from different realms like a commercial, retail, educational,
+                  residential, cultural, health, hospitality and more.
+                </p>
+                <div class="experience-box">
+                  <div class="experience-border"></div>
+                  <div class="experience-content">
+                    <div class="experience-number">26</div>
+                    <div class="experience-info wow fadeInDown">Years<br>Experience<br>Working</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-5 col-md-offset-1">
+                <div class="dots-image">
+                  <img alt="" class="about-img img-responsive" src="images/1-470x660.jpg">
+                  <div class="dots"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section bg-dots">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row-services row">
+                  
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-apartment"></span>
+                    <h4>Shop Drawings
+                    </h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+                  </div>
+
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-paint-roller"></span>
+                    <h4> Quantity Take-Off</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+                  </div>
+
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-pencil-ruler"></span>
+                    <h4>Fabrication Drawings</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+                  </div>
+
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-pencil-ruler"></span>
+                    <h4>As Built Drawings</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+                  </div>
+
+
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-pencil-ruler"></span>
+                    <h4>BIM Modelling</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+                  </div>
+
+                  <div class="col-service col-sm-6 col-lg-4">
+                    <span class="text-dark icon-medium icon-pencil-ruler"></span>
+                    <h4>Inventor Modelling</h4>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum laudantium nulla delectus
+                      excepturi, consectetur mollitia sit, repellat placeat reprehenderit doloremque asperiores
+                      explicabo tempora maxime ipsam eos natus vel illum soluta.
+                    </p>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Section Projects -->
+
+        <section class="section-projects section">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-5">
+                <h2 class="section-title">Latest Projects</h2>
+              </div>
+              <div class="col-lg-7">
+                <div class="filter-content">
+
+                  <a href="#" class="view-projects">View All Projects</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-carousel owl-carousel">
+            <div class="project-item item-shadow building">
+              <img alt="" class="img-responsive" src="images/projects/1-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Triangle<br>Concrete House<br>On Lake</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow building">
+              <img alt="" class="img-responsive" src="images/projects/2-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Ocean<br>Museum<br>Italy</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow building">
+              <img alt="" class="img-responsive" src="images/projects/3-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Milko<br>Co-Working<br>Building</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow building">
+              <img alt="" class="img-responsive" src="images/projects/4-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Redesign<br>Interior For<br>Villa</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow interior-exterior">
+              <img alt="" class="img-responsive" src="images/projects/5-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Wooden<br>Hozirontal<br>Villa</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow interior-exterior">
+              <img alt="" class="img-responsive" src="images/projects/6-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Small<br>House Near<br>Wroclaw</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow interior-exterior">
+              <img alt="" class="img-responsive" src="images/projects/7-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Bellecomde<br>Holiday<br>Residence</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+            <div class="project-item item-shadow interior-exterior">
+              <img alt="" class="img-responsive" src="images/projects/8-426x574.jpg">
+              <div class="project-hover">
+                <div class="project-hover-content">
+                  <h3 class="project-title">Cubic<br>Inter Mesuem<br>In Rome</h3>
+                  <p class="project-description">Lorem ipsum dolor sit amet, consectetur adipil pcing elit. Proin nunc
+                    leo, rhoncus sit amet tolil arcu vel, pharetra volutpat sem lorn Donec tincidunt velit nec laoreet
+                    semper...</p>
+                </div>
+              </div>
+              <a href="#" class="link-arrow">See project <i class="icon ion-ios-arrow-right"></i></a>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- Section Clients -->
+
+        <section class="section-clients section bg-dots">
+          <div class="container">
+            <h2 class="section-title">From Great Our Clients</h2>
+            <div class="client-carousel owl-carousel">
+              <div class="client-carousel-item">
+                <img alt="" class="client-img" src="images/clients/1-92x92.jpg">
+                <div class="client-box">
+                  <img alt="" class="image-quote" src="images/image-icons/icon-quote.png">
+                  <div class="client-title">
+                    <span class="client-name">Adam Stone</span>
+                    <span class="client-company">/ CEO at Google INC</span>
+                  </div>
+                  <p class="client-description">Sed elit quam, iaculis sed semper sit amet udin vitae nibh. at magna
+                    akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.</p>
+                </div>
+              </div>
+              <div class="client-carousel-item">
+                <img alt="" class="client-img" src="images/clients/2-92x92.jpg">
+                <div class="client-box">
+                  <img alt="" class="image-quote" src="images/image-icons/icon-quote.png">
+                  <div class="client-title">
+                    <span class="client-name">Anabella Kleva </span>
+                    <span class="client-company">/ Managerment at Envato</span>
+                  </div>
+                  <p class="client-description">Sed elit quam, iaculis sed semper sit amet udin vitae nibh. at magna
+                    akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.</p>
+                </div>
+              </div>
+              <div class="client-carousel-item">
+                <img alt="" class="client-img" src="images/clients/1-92x92.jpg">
+                <div class="client-box">
+                  <img alt="" class="image-quote" src="images/image-icons/icon-quote.png">
+                  <div class="client-title">
+                    <span class="client-name">Adam Stone</span>
+                    <span class="client-company">/ CEO at Google INC</span>
+                  </div>
+                  <p class="client-description">Sed elit quam, iaculis sed semper sit amet udin vitae nibh. at magna
+                    akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup. Sed elit quam, iaculis
+                    sed semper sit amet udin vitae nibh</p>
+                </div>
+              </div>
+              <div class="client-carousel-item">
+                <img alt="" class="client-img" src="images/clients/2-92x92.jpg">
+                <div class="client-box">
+                  <img alt="" class="image-quote" src="images/image-icons/icon-quote.png">
+                  <div class="client-title">
+                    <span class="client-name">Adam Stone</span>
+                    <span class="client-company">/ CEO at Google INC</span>
+                  </div>
+                  <p class="client-description">Sed elit quam, iaculis sed semper sit amet udin vitae nibh. at magna
+                    akal semperFusce commodo molestie luctus.Lorem ipsum Dolor tusima olatiup.</p>
+                </div>
+              </div>
+            </div>
+            <div class="partner-carousel owl-carousel">
+              <div class="partner-carousel-item">
+                <img alt="" src="images/partners/1.png">
+              </div>
+              <div class="partner-carousel-item">
+                <img alt="" src="images/partners/2.png">
+              </div>
+              <div class="partner-carousel-item">
+                <img alt="" src="images/partners/3.png">
+              </div>
+              <div class="partner-carousel-item">
+                <img alt="" src="images/partners/4.png">
+              </div>
+              <div class="partner-carousel-item">
+                <img alt="" src="images/partners/5.png">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section News -->
+
+        <section class="section-news section">
+          <div class="container">
+            <h2 class="section-title">Latest News <a href="#" class="link-arrow-2 pull-right">All Articles <i
+                  class="icon ion-ios-arrow-right"></i></a></h2>
+            <div class="news-carousel owl-carousel">
+              <div class="news-item">
+                <img alt="" src="images/news/1-370x370.jpg">
+                <div class="news-hover">
+                  <div class="hover-border">
+                    <div></div>
+                  </div>
+                  <div class="content">
+                    <div class="time">Dec 15th, 2016</div>
+                    <h3 class="news-title">Discover Architecture Of Bario</h3>
+                    <p class="news-description">Lorem ipsum dolor sit amet, consect etur adipiscing elit. Mauris vel
+                      auctorol est. Integer nunc ipsum...</p>
+                  </div>
+                  <a class="read-more" href="#">Continue</a>
+                </div>
+              </div>
+              <div class="news-item">
+                <img alt="" src="images/news/2-370x370.jpg">
+                <div class="news-hover">
+                  <div class="hover-border">
+                    <div></div>
+                  </div>
+                  <div class="content">
+                    <div class="time">Dec 15th, 2016</div>
+                    <h3 class="news-title">Discover Architecture Of Bario</h3>
+                    <p class="news-description">Lorem ipsum dolor sit amet, consect etur adipiscing elit. Mauris vel
+                      auctorol est. Integer nunc ipsum...</p>
+                  </div>
+                  <a class="read-more" href="#">Continue</a>
+                </div>
+              </div>
+              <div class="news-item">
+                <img alt="" src="images/news/3-370x370.jpg">
+                <div class="news-hover">
+                  <div class="hover-border">
+                    <div></div>
+                  </div>
+                  <div class="content">
+                    <div class="time">Dec 15th, 2016</div>
+                    <h3 class="news-title">Discover Architecture Of Bario</h3>
+                    <p class="news-description">Lorem ipsum dolor sit amet, consect etur adipiscing elit. Mauris vel
+                      auctorol est. Integer nunc ipsum...</p>
+                  </div>
+                  <a class="read-more" href="#">Continue</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+
+      <footer id="footer" class="footer section">
+        <div class="footer-flex">
+          <div class="flex-item">
+
+            <a class="brand pull-left" href="#">
+              <img alt="" src="images/logo.svg">
+              <div class="brand-info">
+                <div class="brand-name">EFD</div>
+                <div class="brand-text">Elegance Facade Design</div>
+              </div>
+            </a>
+
+
+          </div>
+          <div class="flex-item">
+            <div class="inline-block">© Stunsky 2023<br>All Rights Resevered</div>
+          </div>
+          <div class="flex-item">
+            <ul>
+              <li><a href="#">Site Map</a></li>
+              <li><a href="#">Term & Conditions</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Help</a></li>
+              <li><a href="#">Affiliatep</a></li>
+            </ul>
+          </div>
+          <div class="flex-item">
+            <ul>
+              <li><a href="#">Our Location</a></li>
+              <li><a href="#">Career</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="flex-item">
+            <ul>
+              <li class="active"><a href="#">ENG</a></li>
+              <li><a href="#">FRA</a></li>
+              <li><a href="#">GER</a></li>
+            </ul>
+          </div>
+          <div class="flex-item">
+            <div class="social-list">
+              <a href="#" class="icon ion-social-twitter"></a>
+              <a href="#" class="icon ion-social-facebook"></a>
+              <a href="#" class="icon ion-social-googleplus"></a>
+              <a href="#" class="icon ion-social-linkedin"></a>
+              <a href="#" class="icon ion-social-dribbble-outline"></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- jQuery -->
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/animsition.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
+  <script src="js/wow.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/isotope.pkgd.min.js"></script>
+  <script src="js/imagesloaded.pkgd.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/sly.min.js"></script>
+
+
+  <!-- Slider revolution -->
+  <script src="js/rev-slider/jquery.themepunch.tools.min.js"></script>
+  <script src="js/rev-slider/jquery.themepunch.revolution.min.js"></script>
+
+  <!-- Slider revolution 5x Extensions   -->
+  <script src="js/rev-slider/revolution.extension.actions.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.carousel.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.kenburn.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.layeranimation.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.migration.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.navigation.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.parallax.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.slideanims.min.js"></script>
+  <script src="js/rev-slider/revolution.extension.video.min.js"></script>
+
+
+  <!-- Scripts -->
+  <script src="js/scripts.js"></script>
+  <script src="js/rev-slider-init.js"></script>
 </body>
+
+<!-- index 15:24:34 GMT -->
+
 </html>
